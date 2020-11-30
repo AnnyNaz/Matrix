@@ -33,29 +33,20 @@ int main()
 	//std::async()
 
 		// THE SECOND PART
-	int matrix_height = 8;
-	int matrix_width = 4;
+	int matrix_height = 8000;
+	int matrix_width = 4000;
 	Matrix matrixX(matrix_height, matrix_width);
 	matrixX.fillRandom(0, 100);
-
 	Matrix matrixY(matrix_width, matrix_height);
 	matrixY.fillRandom(0, 100);
-	
-
 	auto t1 = std::chrono::high_resolution_clock::now();
 	auto matrixZ = matrixX * matrixY;
 	auto t2 = std::chrono::high_resolution_clock::now();
-	std::cout << "execution time is " << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << "msec" << std::endl;;
-
+	std::cout << "execution time is " << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << "msec" << std::endl;
 	Matrix::enableMultithreading();
-
 	t1 = std::chrono::high_resolution_clock::now();
 	auto matrixZ2 = matrixX * matrixY;
 	t2 = std::chrono::high_resolution_clock::now();
 	std::cout << "execution time is " << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << "msec" << std::endl;
-	if (matrixZ == matrixZ2)
-		cout << "OK" << std::endl;
-	cout << "matrixZ \n" << matrixZ.to_string() << "\n matrixZ2 \n" << matrixZ2.to_string() << endl;
 	assert(matrixZ == matrixZ2);
-	
 }
